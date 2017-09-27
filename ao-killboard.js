@@ -68,7 +68,7 @@ function parseKills(events) {
 
 function postKill(kill, channel = config.botChannel) {
     //quick fix to not post kills with 0 fame (like arena kills after the patch)
-    if (kill.TotalVictimKillFame === "0"){
+    if (kill.TotalVictimKillFame === 0){
          return;
     }
 
