@@ -1,0 +1,12 @@
+#!/bin/bash
+docker build -t azaryc2s/private:kill-o-mat .
+docker push azaryc2s/private:kill-o-mat
+
+containerName="kill-o-mat-$1"
+
+docker stop $containerName
+docker rm $containerName
+
+docker create -it --name $containerName azaryc2s/private:kill-o-mat
+docker cp ./$1/config.json $containerName:/usr/src/app/config.json
+docker start $containerName
