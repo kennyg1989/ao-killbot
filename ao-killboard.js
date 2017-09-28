@@ -182,38 +182,41 @@ client.on('ready', () => {
  */
 client.on('message', message => {
     if (message.content.indexOf(config.cmdPrefix) !== 0 || message.author.bot) return;
-    else { // Execute command!
-        var args = message.content.slice(config.cmdPrefix.length).trim().split(/ +/g);
-        var command = args.shift().toLowerCase();
+    if (message.channel.id !== config.botChannel){
+        //ignore the message if it was not sent in the channel this bot is supposed to post in
+        return;
+    }
+    // Execute command!
+    var args = message.content.slice(config.cmdPrefix.length).trim().split(/ +/g);
+    var command = args.shift().toLowerCase();
 
-        // Test Command - !ping
-        if (command === 'ping') {
-            message.reply('pong');
-        }
+    // Test Command - !ping
+    if (command === 'ping') {
+        message.reply('pong');
+    }
 
-        else if (command === 'kbinfo') {
-            request({
-                json: true,
-                uri: 'https://gameinfo.albiononline.com/api/gameinfo/events/' + args[0]
-            }, function (error, response, body) {
-                if (!error && response.statusCode === 200) {
-                    postKill(body, message.channel.id);
-                } else {
-                    console.log('Error: ', error); // Log the error
-                }
-            });
-        }
-
-        // [ADMIN] - clear config.botChannel messages
-        else if (command === 'kbclear') {
-            if (config.admins.includes(message.author.id) && message.channel.id == config.botChannel) {
-                message.channel.send('Clearing Killboard').then(msg => {
-                    msg.channel.fetchMessages().then(messages => {
-                        message.channel.bulkDelete(messages);
-                        console.log("[ADMIN] " + message.author.username + " cleared Killboard");
-                    })
-                })
+    else if (command === 'kbinfo') {
+        request({
+            json: true,
+            uri: 'https://gameinfo.albiononline.com/api/gameinfo/events/' + args[0]
+        }, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                postKill(body, message.channel.id);
+            } else {
+                console.log('Error: ', error); // Log the error
             }
+        });
+    }
+
+    // [ADMIN] - clear config.botChannel messages
+    else if (command === 'kbclear') {
+        if (config.admins.includes(message.author.id) && message.channel.id == config.botChannel) {
+            message.channel.send('Clearing Killboard').then(msg => {
+                msg.channel.fetchMessages().then(messages => {
+                    message.channel.bulkDelete(messages);
+                    console.log("[ADMIN] " + message.author.username + " cleared Killboard");
+                })
+            })
         }
     }
 });
