@@ -50,7 +50,8 @@ Example: config.json
 }
 ```
 
-### Creating new service
+### Creating new service with Docker
+* You need Docker installed on your machine. Visit https://www.docker.com/ for more information.
 * Create new directory in this project directory (called for example like the guild you'd like to create the bot)
 * Place the filled out config.json file inside that directory. So for the "templer" guild, you'd have ./templer/config.json
 * Call the script with ./create_service templer
