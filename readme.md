@@ -50,10 +50,10 @@ Example: config.json
 }
 ```
 
-### Creating new Bot
+### Creating new service
 * Create new directory in this project directory (called for example like the guild you'd like to create the bot)
-* Place the filled out config.json file inside that directory. So for the "nilfgard" guild, you'd have nilfgard/config.json
-* Call the script with ./create_bot nilfgard
+* Place the filled out config.json file inside that directory. So for the "templer" guild, you'd have ./templer/config.json
+* Call the script with ./create_service templer
 * Enjoy
 
 ### Built With
