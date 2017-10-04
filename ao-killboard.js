@@ -21,7 +21,7 @@ var lastRecordedKill = -1;
  * @param  {Number} offset [offset for first kill]
  * @return {json} [json array of events]
  */
-function fetchKills(limit = 101, offset = 0) {
+function fetchKills(limit = 51, offset = 0) {
     request({
         uri: 'https://gameinfo.albiononline.com/api/gameinfo/events?limit='+limit+'&offset='+offset,
         json: true
