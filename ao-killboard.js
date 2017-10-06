@@ -14,6 +14,7 @@ const request = require('request');
 const client = new Discord.Client();
 
 var lastRecordedKill = -1;
+var refreshRate = 15000;
 
 /**
  * Fetch recent kills from the Gameinfo API
@@ -171,10 +172,10 @@ client.on('ready', () => {
 
     fetchKills();
 
-    // Fetch kills every 30s
+    // Fetch kills every $refreshRate seconds
     var timer = setInterval(function() {
         fetchKills();
-    }, 30000);
+    }, refreshRate);
 });
 
 /**
