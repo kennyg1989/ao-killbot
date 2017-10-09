@@ -1,11 +1,11 @@
 #!/bin/bash
-docker build -t kill-o-mat .
+docker build -t kill-ao-mat-beta .
 
-containerName="kill-o-mat-$1"
+containerName="kill-ao-mat-beta-$1"
 
 docker stop $containerName
 docker rm $containerName
 
-docker create -it --name $containerName kill-o-mat
+docker create -it --name $containerName kill-ao-mat-beta
 docker cp ./$1/config.json $containerName:/usr/src/app/config.json
-docker start $containerName
+docker start -i $containerName
