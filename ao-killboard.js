@@ -5,6 +5,8 @@
 * @Last Modified time: 2017-08-21 12:35:33
 */
 
+var BASE_URL = 'https://gameinfo.albiononline.com/api/gameinfo';
+
 // Define static constants
 const config = require('./config.json');
 
@@ -15,6 +17,33 @@ const client = new Discord.Client();
 
 var lastRecordedKill = -1;
 var refreshRate = 15000;
+
+
+function baseRequest(url, cb) {
+  request({
+    uri: BASE_URL+url,
+    json: true
+  },function (error, response, body) {
+    if(!error && response.statusCode === 200) {
+      console.log('Call to ',url,' successfull');
+      cb(body);
+    }
+  });
+}
+
+function search(query,cb){
+  console.log('Searching for: ', query);
+  baseRequest('/search?q='+query,function(result) {
+	cb(result);
+  });
+}
+
+function getPlayerID(name, cb) {
+  search(name,function(result){
+    console.log('Found: ',result);
+    cb(result.players[0].Id);
+  });
+}
 
 /**
  * Fetch recent kills from the Gameinfo API
@@ -219,6 +248,33 @@ client.on('message', message => {
                 })
             })
         }
+    }
+
+    else if (command === 'feud') {
+	getPlayerID(args[0], function(p1ID){
+		getPlayerID(args[1], function(p2ID){
+			baseRequest('/events/'+p1ID+'/history/'+p2ID, function(history){
+				console.log('Retrieved: ',history);
+                       		history.some(function(kill, index) {
+                                	postKill(kill);
+                        	});
+			});
+		});
+	});
+    }
+
+    else if (command === 'kills') {
+        lim = 1;
+        if (args.length === 2){
+            lim = args[1];
+        }
+        getPlayerID(args[0], function(pID){
+            baseRequest('/players/'+pID+'/topkills?limit='+lim, function(kills){
+                kills.some(function(kill,index) {
+			postKill(kill);
+                });
+            });
+        });
     }
 });
 
