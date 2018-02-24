@@ -118,9 +118,13 @@ function postKill(kill, channel = config.botChannel) {
         assistedBy = soloKill[Math.floor(Math.random() * soloKill.length)];
     } else {
         var assists = [];
+	var totalDmg = 0;
+        kill.Participants.forEach(function(participant) {
+                totalDmg += participant.DamageDone;
+        })
         kill.Participants.forEach(function(participant) {
             if (participant.Name != kill.Killer.Name) {
-                assists.push(participant.Name);
+                assists.push(participant.Name + " (" + (Math.round((participant.DamageDone/totalDmg)*100$
             }
         })
         assistedBy = "Assisted By: " + assists.join(', ');
