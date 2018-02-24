@@ -124,7 +124,7 @@ function postKill(kill, channel = config.botChannel) {
         })
         kill.Participants.forEach(function(participant) {
             if (participant.Name != kill.Killer.Name) {
-                assists.push(participant.Name + " (" + (Math.round((participant.DamageDone/totalDmg)*100$
+                assists.push(participant.Name + " (" + (Math.round((participant.DamageDone/totalDmg)*10000)/100) + "%)");
             }
         })
         assistedBy = "Assisted By: " + assists.join(', ');
