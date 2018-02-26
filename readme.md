@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Config
 * **To add the bot to your server**: 
-Visit https://discordapp.com/oauth2/authorize?&client_id={YOUR CLIENT ID}&scope=bot&permissions=0
+Visit https://discordapp.com/oauth2/authorize?&client_id={YOUR_CLIENT_ID}&scope=bot&permissions=0
 Example: https://discordapp.com/oauth2/authorize?client_id=975390562344173493&scope=bot&permissions=0
 
 ###### * to only display Guild kills and not alliance, set allianceName to something that cannot exist i.e <NONE>
