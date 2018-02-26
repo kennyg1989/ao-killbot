@@ -29,6 +29,7 @@ These instructions will get you a copy of the project up and running on your loc
 * The apps ClientID you copied earlier will now be needed.
 * Visit https://discordapp.com/oauth2/authorize?&client_id={ClientID}&scope=bot&permissions=0 where you substitute the '{ClientID}' with the actual ID.
 * Example: https://discordapp.com/oauth2/authorize?client_id=975390562344171337&scope=bot&permissions=0
+* Login with an account that is either the owner of the server you wish to authorize your app for or has the rights to do so and authorize the app.
 
 ### Config
 * Paste your bots Token as 'token' and the channels ID as 'botChannel' into your config
