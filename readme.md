@@ -11,22 +11,13 @@ These instructions will get you a copy of the project up and running on your loc
 ### Usage
 * !ping - replies with @user pong
 * !kbclear - delets all messages in the config.botChannel
-* !kbinfo <eventId> - displays the killboard post for a specific kill to the current channel
-* !kills <playerName> [<n>]- displays the last n kills of the given player. If n is not given, then it is set to 1
+* !kbinfo $eventId - displays the killboard post for a specific kill to the current channel
+* !kills $playerName [$n] - displays the last n kills of the given player. If n is not given, then it is set to 1
 ### Prerequisites
 
 * [NodeJS](https://nodejs.org/)
 
-### Installing
-* Install Node JS on the machine that will run the bot
-* Create a new [Discord Application](https://discordapp.com/developers/applications/me)
-* Copy config.json.example --> config.json
-* Add the 'APP BOT USER' token as 'token' in 'config.json'
-* Enable developer mode in Discord (Settings -> Appearance)
-* Right click the channel you wish to use as the kill board, and Copy ID
-* Set ID as 'botChannel'
-* OPTIONAL: Set User IDs for admin accounts
-
+### Config
 * **To add the bot to your server**: 
 Visit https://discordapp.com/oauth2/authorize?&client_id={YOUR CLIENT ID}&scope=bot&permissions=0
 Example: https://discordapp.com/oauth2/authorize?client_id=975390562344173493&scope=bot&permissions=0
@@ -50,11 +41,21 @@ Example: config.json
 }
 ```
 
-### Creating new service with Docker
+### Manual Install
+* Install Node JS on the machine that will run the bot
+* Create a new [Discord Application](https://discordapp.com/developers/applications/me)
+* Copy config.json.example --> config.json
+* Add the 'APP BOT USER' token as 'token' in 'config.json'
+* Enable developer mode in Discord (Settings -> Appearance)
+* Right click the channel you wish to use as the kill board, and Copy ID
+* Set ID as 'botChannel'
+* OPTIONAL: Set User IDs for admin accounts
+
+### Run with Docker
 * You need Docker installed on your machine. Visit https://www.docker.com/ for more information.
 * Create new directory in this project directory (called for example like the guild you'd like to create the bot)
 * Place the filled out config.json file inside that directory. So for the "templer" guild, you'd have ./templer/config.json
-* Call the script with ./create_service templer
+* Call the script as "./create_service templer"
 * Enjoy
 
 ### Built With
@@ -65,3 +66,4 @@ Example: config.json
 ## Authors
 
 * **Mark Arneman** *Marn#8945* - [Arneman.me](http://arneman.me)
+* **Arkadiusz Zarychta** aka *invalidname*/*azaryc2s* - (Docker & new Features)
