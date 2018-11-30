@@ -16,7 +16,7 @@ const request = require('request');
 const client = new Discord.Client();
 
 var lastRecordedKill = -1;
-var refreshRate = 5000;
+var refreshRate = 15000;
 
 
 function baseRequest(url, cb) {
