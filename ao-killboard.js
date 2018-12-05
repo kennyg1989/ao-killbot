@@ -201,7 +201,7 @@ client.on('ready', () => {
     }
 
     // Set 'Playing Game' in discord
-    client.user.setGame(config.playingGame); // broken due to discord API changes
+    client.user.setActivity(config.playingGame); // broken due to discord API changes
 
     fetchKills();
 
